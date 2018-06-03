@@ -1,0 +1,85 @@
+<div class="col-lg-12 col-md-3 col-sm-3 col-xs-12"> 
+  <div class="row">
+     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> 
+        <strong style="font-size: x-large;">Productos de la Orden</strong> 
+     </div>
+     <div class="col-lg-9 col-md-3 col-sm-3 col-xs-12">
+        <div class="row">
+          <div class="col-lg-11 col-md-3 col-sm-3 col-xs-12 ">      
+            <%= button_to  'Volver', buscar_producto_path, class:"btn btn-default pull-right"%>
+          </div>
+          <div class="col-lg-1 col-md-3 col-sm-3 col-xs-12 ">    
+            <%= button_to  'Siguiente', buscar2_producto_path, class:"btn btn-primary pull-right"%>
+          </div>
+          </div>
+        </div>
+    </div>
+ 
+<div class="row" style="margin-top: 15px">
+        <div class="col-lg-12 col-md-3 col-sm-3 col-xs-12">   
+          <div class="table-responsive">
+              <table class="table table-condensed table-hover table-responsive table-striped">
+                 <thead style="background-color:#A9D0F5">
+    <tr>
+      <th>N°</th>
+      <th></th>
+      <th>Codebar</th>
+      <th>Producto</th>
+      <th>Talle</th>
+      <th>Stock</th>
+      <th>Imagen</th>
+      <th>Imagen link</th>
+          </tr>
+  </thead>
+  <tbody>
+        <%n=0%>
+        <%x=0%>
+        <%$liscodf.map do |deto|%>
+
+        <tr>
+          <%n=n+1%>
+          <td><%=n%></td>
+          <td>A Importar</td>
+          <td><%=deto  %></td>
+          <td><%=@i_producto=$descrl[x]  %></td>
+          <td><%=@i_talle=$lista[x]  %></td>
+          <td><%=@i_cant=$lisq[x]  %></td>
+          <td><img src="<%=$imal[x]  %>" width="40px" class="img-thumbnail"></td>
+          <td><%=@i_imagen=$imal[x]  %></td>
+          </tr>
+          <%x=x+1%>
+          <% $buscapro=Producto.where(codebar:  deto).first %>
+          <% if $buscapro.blank?%>
+          <tr>
+          <td></td>
+          <td>Base de Datos</td>
+          <td>---</td>
+          <td>---</td>
+          <td>---</td>
+          <td>---</td>
+          <td>---</td>
+          <td>---</td>
+
+
+          </tr>
+          <%else%>
+          <tr>
+          <td></td>
+          <td>Base de Datos</td>
+          <td><%=$buscapro.codebar %></td>
+          <td><%=$buscapro.producto %></td>
+          <td><%=$buscapro.talle %></td>
+          <td><%=$buscapro.stock %></td>
+          <td><img src="<%=$buscapro.imagen %>" width="40px" class="img-thumbnail"></td>
+          <td><%=$buscapro.imagen %></td>
+
+        </tr>
+          <%end %>
+          <%end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+

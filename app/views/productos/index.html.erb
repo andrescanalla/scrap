@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Productos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Codebar</th>
+      <th>Producto</th>
+      <th>Talle</th>
+      <th>Style</th>
+      <th>Imagen</th>
+      <th>stock</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @productos.each do |producto| %>
+      <tr>
+        <td><%= producto.codebar %></td>
+        <td><%= producto.producto %></td>
+        <td><%= producto.talle %></td>
+        <td><%= producto.style %></td>
+        <td><%= producto.imagen %></td>
+          <td><%= producto.stock %></td>
+        <td><%= link_to 'Show', producto %></td>
+        <td><%= link_to 'Edit', edit_producto_path(producto) %></td>
+        <td><%= button_to 'Destroy',producto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Producto', new_producto_path %>
+<%= link_to 'buscar orden', buscar_producto_path%>
+<%= link_to 'Importar orden', importar_producto_path%>

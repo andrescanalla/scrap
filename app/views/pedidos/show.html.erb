@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @pedido.nombre %>
+</p>
+
+<p>
+  <strong>Id tipo:</strong>
+  <%= @pedido.id_tipo %>
+</p>
+
+<p>
+  <strong>Comentarios:</strong>
+  <%= @pedido.comentarios %>
+</p>
+
+<p>
+  <strong>Fechacompra:</strong>
+  <%= @pedido.fechacompra %>
+</p>
+
+<p>
+  <strong>Fechadespacho:</strong>
+  <%= @pedido.fechadespacho %>
+</p>
+
+<p>
+  <strong>Fechallegada:</strong>
+  <%= @pedido.fechallegada %>
+</p>
+
+<p>
+  <strong>Id estado:</strong>
+  <%= @pedido.id_estado %>
+</p>
+
+<p>
+  <strong>Fechallegada:</strong>
+  <%= @pedido.fechallegada %>
+</p>
+
+<p>
+  <strong>Id estado:</strong>
+  <%= @pedido.id_estado %>
+</p>
+
+<%= link_to 'Edit', edit_pedido_path(@pedido) %> |
+<%= link_to 'Back', pedidos_path %>

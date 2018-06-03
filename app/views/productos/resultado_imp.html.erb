@@ -1,0 +1,21 @@
+<div class="col-lg-12 col-md-3 col-sm-3 col-xs-12"> 
+	<div class="row"> 
+	    <div class="col-lg-12 col-md-3 col-sm-3 col-xs-12"> 
+			<strong style="font-size: x-large;">Resultado de la importacion</strong>
+		</div>
+	</div>
+	<div class="row"> 
+		<div class="col-lg-12 col-md-3 col-sm-3 col-xs-12"> 
+			<br>Orden: <%=$ord.orden%></br>
+			<br>Productos creados: <%=@n   %></br>
+			<br>Productos actualizados: <%=@a   %></br>
+			<br>Detalle de ordenes creados: <%=@o%></br>
+			<br>Stocks creados: <%=@s%></br>
+		</div>
+	</div>
+	<div class="row" style="margin-top:15px">
+		<div class="col-lg-12 col-md-3 col-sm-3 col-xs-12">  
+			<%= button_to  'Volver a importar Nueva Orden' , buscar_producto_path, class:"btn btn-default"%>
+		</div>
+	</div>
+</div>

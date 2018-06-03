@@ -1,0 +1,87 @@
+<div class="col-lg-12 col-md-3 col-sm-3 col-xs-12"> 
+  <div class="row">
+     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> 
+        <strong style="font-size: x-large;">Productos de la Orden</strong> 
+     </div>
+     <div class="col-lg-9 col-md-3 col-sm-3 col-xs-12"> 
+         <div class="row">
+          <div class="col-lg-11 col-md-3 col-sm-3 col-xs-12 ">      
+            <%= button_to  'Volver', buscar_producto_path, class:"btn btn-default pull-right"%>
+          </div>
+          <div class="col-lg-1 col-md-3 col-sm-3 col-xs-12 ">    
+            <%= button_to  'Siguiente', buscar2_producto_path, class:"btn btn-primary pull-right"%>
+          </div>
+          </div>
+        </div>
+    </div>
+
+<div class="row" style="margin-top: 15px">
+        <div class="col-lg-12 col-md-3 col-sm-3 col-xs-12">   
+          <div class="table-responsive">
+              <table class="table table-condensed table-hover table-responsive table-striped">
+                 <thead style="background-color:#A9D0F5">
+    <tr>
+      <th>N°</th>
+      <th></th>
+      <th>Codebar</th>
+      <th>Producto</th>
+      <th>Talle</th>
+      <th>Sytle</th>
+      <th>Cantidad</th>
+      <th>Imagen</th>
+      <th>Imagen link</th>
+          </tr>
+  </thead>
+  <tbody>
+        <%n=0%>
+        <%@rows.map do |row|%>
+
+        <tr>
+          <%codebar_sucio=row.css('[class="item-write-review"] a').attr('href').value  %>
+          <%code=codebar_sucio[-28,12]  %>
+          <%n=n+1%>
+          <td><%=n%></td>
+          <td>A Importar</td>
+          <td><%=code  %></td>
+          <td><%=row.css('[class="product-name"]').text  %></td>
+          <td><%=row.css('[class="attribute Size"] span[2]').text  %></td>
+            <td><%=row.css('[class="sku"] b').text %></td>
+          <td><%=row.css('[class="item-quantity desktopvisible"]').text.strip!  %></td>
+          <td><img src="<%=row.css('[class="item-image"] img').attr('src').value  %>" width="40px" class="img-thumbnail"></td>
+          <td><%=row.css('[class="item-image"] img').attr('src').value  %></td>
+          </tr>
+          <% $buscapro=Producto.where(codebar:  code).first %>
+          <% if $buscapro.blank?%>
+          <tr>
+          <td></td>
+          <td>Base de Datos</td>
+          <td>---</td>
+          <td>---</td>
+          <td>---</td>
+          <td>---</td>
+          <td>---</td>
+          <td>---</td>
+          <td>---</td>
+          </tr>
+          <%else%>
+          <tr>
+            <td></td>
+            <td>Base de Datos</td>
+            <td><%=$buscapro.codebar %></td>
+            <td><%=$buscapro.producto %></td>
+            <td><%=$buscapro.talle %></td>
+            <td><%=$buscapro.style %></td>
+            <td><%=$buscapro.stock %></td>
+            <td><img src="<%=$buscapro.imagen %>" width="40px" class="img-thumbnail"></td>
+            <td><%=$buscapro.imagen %></td>
+          </tr>
+          <%end %>
+        <%end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+

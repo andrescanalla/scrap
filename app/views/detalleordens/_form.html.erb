@@ -1,0 +1,47 @@
+<%= form_for(detalleorden) do |f| %>
+  <% if detalleorden.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(detalleorden.errors.count, "error") %> prohibited this detalleorden from being saved:</h2>
+
+      <ul>
+      <% detalleorden.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id_orden %>
+    <%= f.number_field :id_orden %>
+  </div>
+
+  <div class="field">
+    <%= f.label :id_producto %>
+    <%= f.number_field :id_producto %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cant %>
+    <%= f.number_field :cant %>
+  </div>
+
+  <div class="field">
+    <%= f.label :precio %>
+    <%= f.text_field :precio %>
+  </div>
+
+  <div class="field">
+    <%= f.label :id_tipo %>
+    <%= f.number_field :id_tipo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :chequeado %>
+    <%= f.number_field :chequeado %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

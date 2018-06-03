@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	    <title>Scrap Tienda</title>
+	    <%= csrf_meta_tags %>   
+	    <%= stylesheet_link_tag    'bootstrap.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+	    <%= stylesheet_link_tag    'AdminLTE.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+	    <%= stylesheet_link_tag    '_all-skins.min', media: 'all', 'data-turbolinks-track': 'reload' %>     
+	    <link rel="icon" type="image/png" href="/img/apple-touch-icon2.png">
+	    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+	    <div class="wrapper.collapse.in">
+	      <header class="main-header">
+		        <!-- Logo -->
+		        <a href="http://tienda.ar/dashboard" class="logo">
+		          <!-- mini logo for sidebar mini 50x50 pixels -->
+		          <span class="logo-mini"><img src="/img/cor.png" style="margin-top:-5px ;width: 25px; height: 30px"></img></span>
+		          <!-- logo for regular state and mobile devices -->
+		          <span class="logo-lg"><img src="/img/cor.png" style="margin-top:-5px ;width: 25px; height: 30px"></img></span>
+		        </a>
+		        <!-- Header Navbar: style can be found in header.less -->
+		        <nav class="navbar navbar-static-top" role="navigation">
+		          <!-- Sidebar toggle button-->            
+		         <div class="col-lg-11 col-md-11 col-xs-11" Style="height:50px; padding-right:0;width:95.5%">
+			          <div class="form-group" style="margin-bottom:-4px ; margin-top:5px ;font-size:25px; color:#fff">
+			           Tienda Scrap!!! 
+			          </div>
+		       	 </div>            
+	      	</header>
+	      <!-- Left side column. contains the logo and sidebar -->      
+	      <!--Contenido-->
+	      <!-- Content Wrapper. Contains page content --> 
+
+	        <!-- Main content -->
+	        <section class="content">
+	           <div class="row">
+	            <div class="col-md-12">                            
+	              <div class="panel panel-default" style="margin-bottom:0">                
+	                <div class="panel-body">
+	                  	<div class="row">
+		                  	
+	    						<%= yield %>
+	  						
+	                  	</div><!-- /.row -->
+	                </div><!-- /.box-body -->
+	              </div><!-- /.box -->
+	            </div><!-- /.col -->
+	          </div><!-- /.row -->
+	        </section><!-- /.content -->      
+	    </div><!-- /.wrapper -->       
+  	</body>
+</html>

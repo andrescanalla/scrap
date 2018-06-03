@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Codebar:</strong>
+  <%= @producto.codebar %>
+</p>
+
+<p>
+  <strong>Producto:</strong>
+  <%= @producto.producto %>
+</p>
+
+<p>
+  <strong>Talle:</strong>
+  <%= @producto.talle %>
+</p>
+
+<p>
+  <strong>Style:</strong>
+  <%= @producto.style %>
+</p>
+
+<p>
+  <strong>Imagen:</strong>
+  <%= @producto.imagen %>
+</p>
+
+<%= link_to 'Edit', edit_producto_path(@producto) %> |
+<%= link_to 'Back', productos_path %>

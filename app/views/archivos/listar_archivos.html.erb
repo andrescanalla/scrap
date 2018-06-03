@@ -1,0 +1,230 @@
+  
+   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> 
+     	  <div class="row"> 
+	      	<div class="col-lg-12 col-md-3 col-sm-3 col-xs-12"> 
+	  		<div class="btn-group btn-group-justified" role="group" aria-label="...">
+	  		<%= button_to "Abrir Navegador", brow_path , class:"btn btn-default btn-group-justified" %>  
+			</div>
+			</div>
+		  </div>
+
+     	  <div class="row" style="margin-top: 15px">
+	    	<div class="col-lg-12 col-md-3 col-sm-3 col-xs-12"> 	
+	    		<div class="table-responsive">
+	      			<table class="table table-condensed table-hover table-responsive">
+	       				 <thead style="background-color:#A9D0F5">
+					          <th>Nombre</th>
+					          <th>Imagen</th>         
+	        			 </thead>
+	        		<% if @archivos.empty? %>
+	        			<% if @imgr %>
+	        			<tr>
+	        				  <td>XXXXX-<%= @nom %></td>				          
+					          <td><img src="<%=@imgr%>"  width="47px" class="img-thumbnail"></td>
+					    </tr>
+					    <% end %>
+
+	        		<% else %>
+	        			<% if @archivost %>
+					  		<% @archivos.each do |a| %>
+						  		<tr>
+						          <td><%= a %></td>				          
+						          <td>
+						          	<img src="<%=@alb%><%= a %>"  width="47px" class="img-thumbnail"></td>
+						        </tr>
+						    <% end %>
+					    <% else %>
+					    	<tr>
+					          <td><%= @archivost %></td>				          
+					          <td>
+					          	<img src="<%=@temp%><%= @archivost %>"  width="47px" class="img-thumbnail"></td>
+					        </tr>
+					    <% end %>
+
+				     <% end %> 
+				     <% if (@ope=="t") %>
+					    		<tr>
+					          <td><%= @ult %></td>				          
+					          <td>
+					          	<img src="<%=@temp%><%= @ult %>"  width="47px" class="img-thumbnail"></td>
+					        </tr>
+					        <% end %>        
+			      	</table>
+	  			</div>
+	  		</div>	
+	  	  </div>
+	  				
+	  	<% if (@ope=="g") %>
+	  	<div class="alert alert-success" role="alert">La imagen se guardo con exito!</div>
+	  	<% elsif (@ope=="t") %>
+	  		<div class="alert alert-success" role="alert">La imagen se sumo con exito al listado!</div>
+	  	<% elsif (@ope=="ce") %>
+	  		<div class="alert alert-success" role="alert">La ventana se cerro con exito!</div>
+	  	<% elsif (@ope=="ts") %>
+	  		<div class="alert alert-danger" role="alert">No hay ventanas abiertas con imagenes!</div>
+	  	<% elsif (@ope=="su") %>
+	  		<div class="alert alert-success" role="alert">Se subieron <b><%= params[:logsub] %></b> imagenes al album</div>	
+	  	<% elsif (@ope=="ch") %>
+	  		<% if (@archivos.empty?) %>
+	  			<div class="alert alert-info" role="alert"><b>NO </b> se encuentra en el <b>SISTEMA</b></div>
+	  		<% else %>
+	  			<div class="alert alert-warning" role="alert"><b>YA </b> se encuentra en el <b>SISTEMA</b></div>
+	  		<% end %>
+
+	  		<% if (@archivost.empty?) %>
+	  			<div class="alert alert-info" role="alert"><b>NO </b>se encuentra en el <b>LISTADO</b> a subir</div>
+	  		<% else %>
+	  			<div class="alert alert-warning" role="alert"><b>YA </b>se encuentra en el <b>LISTADO</b> a Subir</div>
+	  		<% end %>
+
+
+	  	<% end %>	
+	      
+		
+	
+		<!-- Enlace a la página de subir archivos -->
+		 <div class="row"> 
+	      	<div class="col-lg-12 col-md-3 col-sm-3 col-xs-12"> 
+			<div class="panel panel-default">
+  			<div class="panel-body">
+			<div class="form-group">
+				<%= form_tag(down_path) do -%>
+				    <div class="form-group">
+				    <% if (@albumv=="cbeba" || !@albumv) %>
+				    <%= radio_button_tag(:carpeta, "cbeba",checked: true ) %>
+				    <% else %>
+				    <%= radio_button_tag(:carpeta, "cbeba") %>
+				    <% end %>
+					<%= label_tag(:carpeta_beba, "Carters Beba") %>
+					</div>
+					<div class="form-group">					
+				    <% if (@albumv=="cbebe") %>			
+					<%= radio_button_tag(:carpeta, "cbebe",checked: true) %>
+					<% else %>
+					<%= radio_button_tag(:carpeta, "cbebe") %>
+					<% end %>
+					<%= label_tag(:carpeta_bebe, "Carters Bebe") %>
+					</div>
+					<div class="form-group">
+					<% if (@albumv=="cnena") %>			
+					<%= radio_button_tag(:carpeta, "cnena",checked: true) %>
+					<% else %>
+					<%= radio_button_tag(:carpeta, "cnena") %>
+					<% end %>
+					<%= label_tag(:carpeta_bebe, "Carters Nena") %>
+					</div>
+					<div class="form-group">
+					<% if (@albumv=="cnene") %>			
+					<%= radio_button_tag(:carpeta, "cnene",checked: true) %>
+					<% else %>
+					<%= radio_button_tag(:carpeta, "cnene") %>
+					<% end %>
+					<%= label_tag(:carpeta_bebe, "Carters Nene") %>
+					</div>
+					<div class="form-group">
+					<% if (@albumv=="hnena") %>			
+					<%= radio_button_tag(:carpeta, "hnena",checked: true) %>
+					<% else %>
+					<%= radio_button_tag(:carpeta, "hnena") %>
+					<% end %>
+					<%= label_tag(:carpeta_bebe, "Hym Nena") %>
+					</div>
+					<div class="form-group">
+					<% if (@albumv=="hnene") %>			
+					<%= radio_button_tag(:carpeta, "hnene",checked: true) %>
+					<% else %>
+					<%= radio_button_tag(:carpeta, "hnene") %>
+					<% end %>
+					<%= label_tag(:carpeta_bebe, "Hym Nene") %>
+					</div>
+					<div class="form-group">
+					<% if (@albumv=="skyp") %>			
+					<%= radio_button_tag(:carpeta, "skyp",checked: true) %>
+					<% else %>
+					<%= radio_button_tag(:carpeta, "skyp") %>
+					<% end %>
+					<%= label_tag(:carpeta_bebe, "Skip-Hop") %>
+					</div>					
+					<%= submit_tag "Check", formaction: check_path, class:"btn btn-default" %>
+					
+					<%= submit_tag "Cerrar Ventana", formaction: cerrar_path, class:"btn btn-danger" %>
+					<%= submit_tag "Listar Foto", class:"btn btn-primary" %>
+				 	
+
+				 </div>
+			</div>
+			</div>
+			</div>
+		</div>	
+	</div>
+	<div class="col-lg-9 col-md-3 col-sm-3 col-xs-12"> 
+		<div class="panel panel-default" style="margin-bottom: 0px">
+  			<div class="panel-body">
+  				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> <b>Listado de Fotos a subir</b></div>
+  				<div class="col-lg-7 col-md-3 col-sm-3 col-xs-12"> 
+  					
+  					<%= submit_tag "Subir Fotos del listado", formaction: subir_path, class:"btn btn-primary pull-right", style:"margin-top:-8px; margin-bottom: 8px; margin-right:-50px" %>
+  					<% end %>
+  				</div>
+  				<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12" style="padding-right:15px"> 
+  					<%= form_tag deletetemp_path, method: :post do %>
+  					<%= button_tag "Borrar listado", formaction: deletetemp_path, class:"btn btn-danger pull-right", style:"margin-top:-8px; margin-bottom: 8px;" %>
+  						 <% end %>
+  					</div>
+
+
+		<div class="row" style="margin-top: 15px">
+	    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 		    		
+			      <table class="table table-condensed table-hover table-condensed" id="ex">
+			        <thead style="background-color:#A9D0F5">
+					          <th>Nº</th>
+					          <th>Nombre</th>
+					          <th>Codigo Facebook</th>
+					          <th>Imagen</th>
+					          <th>Accion</th>         
+	        			 </thead>	        			
+	        			<% if  @architemp.count ==2 %>
+	        			<% else %>
+	        					<% n=0 %>
+					         <% @architemp[2,1000].each do |a| %>
+						        <% n=n+1 %>
+						        <tr>						         				          
+						          <td><%= n %></td>	
+						          <td><%= a %></td>	
+						          <td><%= a[0,5] %></td>				          
+						          <td><img src="<%=@temp%><%= a %>"  width="47px" data-toggle="modal" data-target="#myModal<%= n %>" class="img-thumbnail">
+						          	 <!-- Modal -->
+				                        <div class="modal fade" id="myModal<%= n %>" role="dialog">
+				                          <div class="modal-dialog">
+				                            <div class="modal-content">
+				                              <div class="modal-header">
+				                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+				                                <h4 class="modal-title" style="text-align: center"><%= a %></h4>
+				                              </div>
+				                              <div class="modal-body">
+				                                <img src="<%=@temp%><%= a %>" width="570px" style="margin: auto">
+				                              </div>        
+				                            </div>
+				                          </div>
+				                        </div>
+						          </td>
+						           <td><form action="/archivos/listar_archivos/delete"  method="get">
+										   <div>
+										       <input type="submit" value="Eliminar" class="btn btn-danger">
+										       <input name="albb" type="hidden" value=<%= params[:albumv] %>>
+										       <input name="nombre" type="hidden" value=<%= a %>>
+										   </div>
+									    </form>
+						          </td>					          
+						        </tr>
+						      <% end %>  
+						 <% end %>        
+			      	</table>	  			
+	  		</div>	
+	  	  </div>
+	  	  </div>	
+	  	  </div>
+	</div>
+	
+	 
+	

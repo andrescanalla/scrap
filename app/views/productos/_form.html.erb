@@ -1,0 +1,42 @@
+<%= form_for(producto) do |f| %>
+  <% if producto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(producto.errors.count, "error") %> prohibited this producto from being saved:</h2>
+
+      <ul>
+      <% producto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :codebar %>
+    <%= f.text_field :codebar %>
+  </div>
+
+  <div class="field">
+    <%= f.label :producto %>
+    <%= f.text_field :producto %>
+  </div>
+
+  <div class="field">
+    <%= f.label :talle %>
+    <%= f.text_field :talle %>
+  </div>
+
+  <div class="field">
+    <%= f.label :style %>
+    <%= f.text_field :style %>
+  </div>
+
+  <div class="field">
+    <%= f.label :imagen %>
+    <%= f.text_area :imagen %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

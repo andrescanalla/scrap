@@ -1,0 +1,45 @@
+<div class="col-lg-12 col-md-3 col-sm-3 col-xs-12"> 
+	<div class="row"> 
+	    <div class="col-lg-12 col-md-3 col-sm-3 col-xs-12"> 
+				<strong>Importar Orden:</strong>
+		</div>
+	</div>
+	<br>
+	<div class="row"> 
+	  	<div class="col-lg-12 col-md-3 col-sm-3 col-xs-12"> 
+	  	<ol>	  		
+	      <li>- Click en el boton abrir navegador</li>		
+		  <li>- En el navegador Chrome que se  abrio, ir a la web de la orden a importar y logear la cuenta </li>
+		  <li>- Abrir la Orden a importar en order history</li>
+		  <li>- Espera a que se haya terminado de cargar la Orden en Chrome</li>
+		 <li>- Hacer clik en el boton Comparar Orden de este Navegador </li>	
+		 </ol>	
+		</div>
+	</div>
+	<br>
+	 La Orden se importara en el ultimo Pedido: <mark><%=Pedido.last.nombre%></mark></br>
+
+	<!--
+	<%=form_tag :action =>'importar' %>
+	<br>
+	Selecciona el tipo de Orden:
+	<%= collection_select(:id_tipo, 1, Tipo.all, :idtipo, :tipo) %></br>
+	<br>
+	Selecciona la marca de la Orden a Importar:
+	<%=select_tag(:marca, options_for_select([['Carters', 1], ['Hym', 2]])) %></br>
+
+	<br><%= submit_tag%> 
+	--> 
+	<br>
+	<div class="row"> 
+	  	<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">    
+			<%= button_to "Abrir Navegador", brow_path, class:"btn btn-default" %>
+		</div>
+		<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12" style="margin-left: 15px">
+			<%= button_to 'Comparar orden Carter´s', comparar_producto_path, class:"btn btn-info"%>
+		</div>
+		<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12" style="margin-left: 70px">
+			<%= button_to 'Comparar orden Hym', comparar_hym_producto_path, class:"btn btn-danger" %>
+		</div>
+	</div>	
+</div>

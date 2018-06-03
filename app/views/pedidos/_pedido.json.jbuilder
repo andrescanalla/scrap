@@ -1,0 +1,2 @@
+json.extract! pedido, :id, :nombre, :id_tipo, :comentarios, :fechacompra, :fechadespacho, :fechallegada, :id_estado, :fechallegada, :id_estado, :created_at, :updated_at
+json.url pedido_url(pedido, format: :json)

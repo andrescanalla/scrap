@@ -1,0 +1,7 @@
+<br></br>
+Selecciona el tipo de Orden:
+<%= collection_select(:id_tipo, 1, Tipo.all, :idtipo, :tipo) %>
+<br></br>
+Selecciona la marca de la Orden a Importar:
+<%=select_tag(:marca, options_for_select([['Carters', 1], ['Hym', 2]])) %>
+<%= text_field_tag 'producto' %>
