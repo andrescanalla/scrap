@@ -263,7 +263,8 @@ class SubirproductoController < ApplicationController
 			  	
 			  	$img0=$doc.css('[class="primary-image"]').attr('src').value
 			  	$imgr=$img0[0..-2]
-			  	$img=$img0[0..-4]+"2000"
+			  	$img=$img0[0..-2]
+			  	#$img=$img0[0..-4]+"2000"
 			  	#na=$img0.split("/").last
 			  	#nam=na[0..-8]
 
