@@ -11,15 +11,18 @@ Rails.application.routes.draw do
   post 'archivos/listar_archivos/deletetemp' => 'archivos#deletetemp', as: :deletetemp
   get 'archivos/listar_archivos/delete' => 'archivos#delete', as: :delete
 
+
    get 'subirproducto/subir_producto'
   post 'subirproducto/subir_producto'  
   post 'subirproducto/subir_producto/brow' => 'subirproducto#abrir_brow', as: :browp
-  post 'subirproducto/subir_producto/down' => 'subirproducto#bajar_arch', as: :downp
-  post 'subirproducto/subir_producto/check' => 'subirproducto#check', as: :checkp
-  post 'subirproducto/subir_producto/subir' => 'subirproducto#subir', as: :subirp
-  post 'subirproducto/subir_producto/cerrar' => 'subirproducto#cerrar', as: :cerrarp
+
+  get 'subirproducto/subir_producto/down' => 'subirproducto#bajar_arch', as: :downp
+  get 'subirproducto/subir_producto/check' => 'subirproducto#check', as: :checkp
+  get 'subirproducto/subir_producto/subir' => 'subirproducto#subir', as: :subirp
+  get 'subirproducto/subir_producto/cerrar' => 'subirproducto#cerrar', as: :cerrarp
   post 'subirproducto/subir_producto/deletetemp' => 'subirproducto#deletetemp', as: :deletetempp
   get 'subirproducto/subir_producto/delete' => 'subirproducto#delete', as: :deletep
+  get 'subirproducto/subir_producto/edit' => 'subirproducto#edit', as: :edit
   
 
   

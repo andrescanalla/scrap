@@ -1,0 +1,19 @@
+console.log("edit <%= @idEdit %>");
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+async function demo() {
+  console.log('Taking a break...');
+  await sleep(500);
+  $("#c<%= @idEdit %>").html("<%= @nom %>");
+}
+
+
+$("#myModald<%= @idEdit %>").modal("hide");
+demo();
+
+
+

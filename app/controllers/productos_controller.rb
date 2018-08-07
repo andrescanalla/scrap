@@ -18,17 +18,10 @@ class ProductosController < ApplicationController
   end
   def comparar_hym
     doc = Nokogiri::XML.parse($browser.html)
-    if doc.css('[class="infoBlock package pane "]').count==1
-        $ordhym=doc.css('[class="infoBlock package pane "]')
-    else
-        $ordhym=doc.css('[class="infoBlock package pane"]')
-    end
-    $ordlimp=$ordhym.css("ul:nth-child(3)")
-    $imas=$ordhym.css("ul:nth-child(2) img[2]") #imagenes
-    $descr=$ordhym.css("h3") # Descripciones
-    # $pres=$ordhym.css("ul:nth-child(2) span[2] span[1]") #precio por unidad
-    $pres=$ordhym.css('[class="priceTotal"] span') #precio total
-    #byebug
+    $ordhym=doc.css('[class="order-item is-open"]')
+    $datestring=$ordhym.at_css("ul[1] li[2] span[2]").text.strip
+    $norden=$ordhym.css('[class="order-id"]')[0].text.gsub('Order','')[1,100]
+    $ordlimp=$ordhym.css('[class="product-detail-list-item"]')
     u=0
     $liscods=0
     $liscods=[]
@@ -36,65 +29,104 @@ class ProductosController < ApplicationController
     $lista=[]
     $lisq=0
     $lisq=[]
+    $imal=0
+    $imal=[]
+    $descrl=0
+    $descrl=[]
+    $prel=0
+    $prel=[]
+    $liscodf=0
+    $liscodf=[]
     $ordlimp.map do |li|
-      $liscods[u]=li.css("li[4] span[2]").text #Nº de articulos
-      $lista[u]=li.css("li[3] span[2]").text #Talles
-      $lisq[u]=li.css("li[1] span[2]").text #Cantidades
+      $liscods[u]=li.css("dd")[0].text #Nº de articulos
+      $lista[u]=li.css("dd")[3].text #Talles
+      $lisq[u]=li.css("dd")[1].text #Cantidades
+      $imal[u]=li.css('[class="product-detail-list-item-image "] img').attr('src').value #imagenes
+      $imal[u]=$imal[u].gsub('order','main').gsub('%2Chmver',',res[s],hmver') #mayor resolicion de imagen
+      $descrl[u]=li.css('[class="sub-sub-heading"]').text # Descripciones
+      $prel[u]=li.css('[class="amount"]').text[1,10] #precio total
+      $liscodf[u]=$liscods[u]+$lista[u] #codigo de prenda completo (producto + talle)
       u=u+1
+    
     end
-  u=0
-  $imal=0
-  $imal=[]
-  $imas.map do |li|
-    $imal[u]=li.attr('src').gsub('small','large')
-    u=u+1
-  end
-  u=0
-  $prel=0
-  $prel=[]
-  $pres.map do |li|
-    $prel[u]=li.text[1,10]
-    u=u+1
-  end
-  u=0
-  $descrl=0
-  $descrl=[]
-  $descr.map do |li|
-    $descrl[u]=li.css("span[1]").text.split("$").first 
-    u=u+1
-  end
+
+    #byebug
+
+
+    
+    
+    #$ordlimp=$ordhym.css("ul:nth-child(3)")
+    #$imas=$ordhym.css("ul:nth-child(2) img[2]") #imagenes
+    #$descr=$ordhym.css("h3") # Descripciones
+    # $pres=$ordhym.css("ul:nth-child(2) span[2] span[1]") #precio por unidad
+    #$pres=$ordhym.css('[class="priceTotal"] span') #precio total
+    #byebug
+    #u=0
+    #$liscods=0
+    #$liscods=[]
+    #$lista=0
+    #$lista=[]
+    #$lisq=0
+    #$lisq=[]
+    #$ordlimp.map do |li|
+    #  $liscods[u]=li.css("li[4] span[2]").text #Nº de articulos
+    #  $lista[u]=li.css("li[3] span[2]").text #Talles
+    #  $lisq[u]=li.css("li[1] span[2]").text #Cantidades
+    #  u=u+1
+    #end
+  #u=0
+  #$imal=0
+  #$imal=[]
+  #$imas.map do |li|
+  #  $imal[u]=li.attr('src').gsub('small','large')
+  #  u=u+1
+  #end
+  #u=0
+  #$prel=0
+  #$prel=[]
+  #$pres.map do |li|
+  #  $prel[u]=li.text[1,10]
+  #  u=u+1
+  #end
+  #u=0
+  #$descrl=0
+  #$descrl=[]
+  #$descr.map do |li|
+  #  $descrl[u]=li.css("span[1]").text.split("$").first 
+  #  u=u+1
+  #end
   #byebug
   #$browser.a(href: "//www.hm.com/us/logout").click
   #sleep 5
-  $browser.goto("http://www.hm.com/us/quickorder")
-  sleep 5
-  n=0
-  $liscodl=0
-  $liscodl=[]
-  $liscodf=0
-  $liscodf=[]
-  $prod=0
-  $prod=[]
-  sleep 4
-  $liscods.map do |cs|
-      $browser.text_field(:id => 'input-articleNumber-0').set(cs)
-      sleep 2
-      $browser.text_field(:id => 'input-articleNumber-1').set()
-      sleep 3
-      doc = Nokogiri::XML.parse($browser.html)
-      sleep 2
-      if doc.css('[class="error"]').count==6
-        $liscodf[n]="xxxxxx"
-        # $prod[n]="This article number doesn’t exist. Please try again."
-      else
-      $liscodl[n]=doc.css('[class="imageItem"] button').attr('data-article').value #codigo de prenda incompleto sin talle
-      $liscodf[n]=$liscodl[n]+$lista[n] #codigo de prenda completo (producto + talle)
-      # $prod[n]=doc.css("h2")[1].text[0,80].strip #nombre de prenda
-      end
-      sleep 1
-      n=n+1
-  end
-  $browser.goto("https://www.hm.com/us/my-hm/mypurchases")
+  #$browser.goto("http://www.hm.com/us/quickorder")
+  #sleep 5
+  #n=0
+  #$liscodl=0
+  #$liscodl=[]
+  #$liscodf=0
+  #$liscodf=[]
+  #$prod=0
+  #$prod=[]
+  #sleep 4
+  #$liscods.map do |cs|
+  #    $browser.text_field(:id => 'input-articleNumber-0').set(cs)
+  #    sleep 2
+  #    $browser.text_field(:id => 'input-articleNumber-1').set()
+  #    sleep 3
+  #    doc = Nokogiri::XML.parse($browser.html)
+  #    sleep 2
+  #    if doc.css('[class="error"]').count==6
+  #      $liscodf[n]="xxxxxx"
+  #      # $prod[n]="This article number doesn’t exist. Please try again."
+  #    else
+  #    $liscodl[n]=doc.css('[class="imageItem"] button').attr('data-article').value #codigo de prenda incompleto sin talle
+  #    $liscodf[n]=$liscodl[n]+$lista[n] #codigo de prenda completo (producto + talle)
+  #    # $prod[n]=doc.css("h2")[1].text[0,80].strip #nombre de prenda
+  #    end
+  #    sleep 1
+  #    n=n+1
+  #end
+  #$browser.goto("https://www.hm.com/us/my-hm/mypurchases")
     render "/productos/comparar_hym"
 end
 
@@ -242,8 +274,8 @@ end
     #ver de hacerle un Shift a $ordlimp para que no cree la 1° fila en el bucle que luego hay q borrarla
     $ord=Orden.new
     $ord.id_pedidos=Pedido.last.idpedidos
-    $ord.orden=$ordhym.css('[id="delivery-0-deliveryDate"]').text# ver que ponems doc.css("h1").first.text[9,50]
-    tofecha=Date.strptime($ordlimp.at_css("li[5] span[2]").text, "%m-%d-%Y")
+    $ord.orden=$norden
+    tofecha=Date.strptime($datestring, "%Y-%m-%d")
     $ord.fecha=tofecha.to_formatted_s(:db)
     $ord.id_marca=2
     $ord.save
